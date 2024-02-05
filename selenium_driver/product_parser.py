@@ -18,7 +18,7 @@ class SMMParser(Driver):
     
     def get(self, url: str):
         self.driver.get(url)
-
+        return self.driver.page_source
     def get_product_links(self):
         html = self.driver.page_source
         soup = BeautifulSoup(str(html), "html.parser")
