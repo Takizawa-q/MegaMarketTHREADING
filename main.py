@@ -1,10 +1,8 @@
 from selenium_driver.product_parser import SMMParser
 from multiprocessing import Process, Pool
-from webdriver_manager.chrome import ChromeDriverManager
-
-ChromeDriverManager().install()
 from time import sleep
 import re
+
 
 def start(page_url: str):
     parser = SMMParser()
@@ -30,8 +28,9 @@ def main():
     #                  "https://megamarket.ru/shop/tehnic/catalog/stroitelstvo-i-remont/",
     #                  "https://megamarket.ru/shop/tehnic/catalog/sport-i-aktivnyy-otdyh/"]
     page_urls = [f"https://megamarket.ru/shop/tehnic/catalog/elektronika/#?page={i}" for i in range(1, 19 + 1)]
-    p = Pool(processes=1)
-    p.map(start, page_urls)
+    #p = Pool(processes=1)
+    #p.map(start, page_urls)
+    start(page_urls[0])
 
 
 if __name__ == "__main__":

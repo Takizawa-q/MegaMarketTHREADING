@@ -21,7 +21,7 @@ class SMMParser(Driver):
 
     def get_product_links(self):
         html = self.driver.page_source
-        soup = BeautifulSoup(str(html), "lxml")
+        soup = BeautifulSoup(str(html), "html.parser")
         product_links = []
         for pre_product_link in soup.find_all("div", class_='catalog-item catalog-item-desktop ddl_product'):
             product_links.append("https://megamarket.ru" + pre_product_link.find("a").get('href'))
