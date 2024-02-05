@@ -5,10 +5,6 @@ from flask import Flask, jsonify
 import re
 
 app = Flask(__name__)
-def start(page_url: str):
-    parser = SMMParser()
-    html = parser.get(url=page_url)
-    return html
     # product_links = parser.get_product_links()
     # print(product_links)
     # for product_link in product_links:
@@ -19,7 +15,7 @@ def start(page_url: str):
     #     html = parser.get_page_html(product_url=product_link)
     #     parser.parse_page_html(html=html)
     
-    parser.quit_()
+    
 
 @app.route("/hello", methods=["GET"])
 def main():
@@ -30,9 +26,12 @@ def main():
     #                  "https://megamarket.ru/shop/tehnic/catalog/stroitelstvo-i-remont/",
     #                  "https://megamarket.ru/shop/tehnic/catalog/sport-i-aktivnyy-otdyh/"]
     page_urls = [f"https://megamarket.ru/shop/tehnic/catalog/elektronika/#?page={i}" for i in range(1, 19 + 1)]
-    #p = Pool(processes=1)
-    # p.map(start, page_urls)
-    start(page_urls[0])
+    parser = SMMParser()
+    html = parser.get(url=page_urls[0])
+    print(html)
+    parser.quit_()
+    return str(html)
+    
 
 
 if __name__ == "__main__":
